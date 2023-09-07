@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Matrícula Estudiantes UPB</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+  </style>
+  <script>
+    function matricular() {
+      var nombre = document.getElementById("nombre").value;
+      var apellido = document.getElementById("apellido").value;
+      var telefono = document.getElementById("telefono").value;
+      var direccion = document.getElementById("direccion").value;
+      var correo = document.getElementById("correo").value;
+      var cedula = document.getElementById("cedula").value;
+      
+      var asignaturas = [];
+      var checkboxes = document.querySelectorAll('input[name="asignatura"]:checked');
+      for (var i = 0; i < checkboxes.length; i++) {
+        asignaturas.push(checkboxes[i].value);
+      }
+      
+      var horario = document.getElementById("horario").value;
+      var horarioTexto = "";
+      
+      if (horario === "Mañana") {
+        horarioTexto = "8:00 a 10:00 AM";
+      } else if (horario === "Tarde") {
+        horarioTexto = "2:00 a 4:00 PM";
+      } else if (horario === "Noche") {
+        horarioTexto = "6:00 a 10:00 PM";
+      }
+      
+      // Mostrar los datos del estudiante y horario
+      var resultado = "Datos del estudiante:<br>" +
+                      "Nombre: " + nombre + "<br>" +
+                      "Apellido: " + apellido + "<br>" +
+                      "Teléfono: " + telefono + "<br>" +
+                      "Dirección: " + direccion + "<br>" +
+                      "Correo: " + correo + "<br>" +
+                      "Cédula: " + cedula + "<br><br>" +
+                      "Materias matriculadas:<br>" +
+                      asignaturas.join(", ") + "<br><br>" +
+                      "Horario: " + horarioTexto + "<br><br>" +
+                      "¡Matrícula exitosa!";
+                      
+      document.getElementById("resultado").innerHTML = resultado;
+    }
+  </script>
+</head>
+<body>
+  <h1>A continuación seleccione los cursos que desea matricular en la UPB</h1>
+  
+  <form>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" required><br><br>
+    
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" required><br><br>
+    
+    <label for="telefono">Teléfono:</label>
+    <input type="text" id="telefono" required><br><br>
+    
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" required><br><br>
+    
+    <label for="correo">Correo:</label>
+    <input type="email" id="correo" required><br><br>
+    
+    <label for="cedula">Cédula:</label>
+    <input type="text" id="cedula" required><br><br>
+    
+    <label for="asignatura">Asignaturas:</label><br>
+    <input type="checkbox" name="asignatura" value="Desarrollo Web"> Desarrollo Web<br>
+    <input type="checkbox" name="asignatura" value="Desarrollo Móvil"> Desarrollo Móvil<br>
+    <input type="checkbox" name="asignatura" value="Java"> Java<br>
+    <input type="checkbox" name="asignatura" value="Python"> Python<br><br>
+    
+    <label for="horario">Horario:</label>
+    <select id="horario" required>
+      <option value="Mañana">Mañana</option>
+      <option value="Tarde">Tarde</option>
+      <option value="Noche">Noche</option>
+    </select><br><br>
+    
+    <input type="button" value="Matricular" onclick="matricular()">
+  </form>
+  
+  <div id="resultado"></div>
+</body>
+</html>
